@@ -56,3 +56,25 @@ if (!prefersReducedMotion) {
 
   revealTargets.forEach((el) => observer.observe(el));
 }
+
+// 카카오맵 연동 (선택 사항)
+// developers.kakao.com > 내 애플리케이션 > 앱 설정 > 요약 정보에서 "JavaScript 키"를 발급받아
+// 아래 큰따옴표 안에 붙여넣으면 자동으로 카카오맵으로 전환됩니다.
+// 앱 설정 > 플랫폼 > Web 플랫폼에 반드시 다음 도메인을 등록해야 합니다: https://dnjswls1996.github.io
+// 키를 넣지 않으면 지금처럼 오픈스트리트맵이 계속 표시됩니다 (에러 없이 안전하게 동작).
+const KAKAO_APP_KEY = '';
+
+if (KAKAO_APP_KEY) {
+  const kakaoScript = document.createElement('script');
+  kakaoScript.src = `https://dapi.kakao.com/v2/maps/sdk.js?appkey=${KAKAO_APP_KEY}&libraries=services&autoload=false`;
+  kakaoScript.onload = () => {
+    kakao.maps.load(() => {
+      const mapEl = document.getElementById('mapEmbed');
+      const coords = new kakao.maps.LatLng(37.5171278, 126.9096600);
+      mapEl.innerHTML = '';
+      const map = new kakao.maps.Map(mapEl, { center: coords, level: 3 });
+      new kakao.maps.Marker({ map, position: coords });
+    });
+  };
+  document.head.appendChild(kakaoScript);
+}
