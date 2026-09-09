@@ -62,7 +62,7 @@ if (!prefersReducedMotion) {
 // 아래 큰따옴표 안에 붙여넣으면 자동으로 카카오맵으로 전환됩니다.
 // 앱 설정 > 플랫폼 > Web 플랫폼에 반드시 다음 도메인을 등록해야 합니다: https://dnjswls1996.github.io
 // 키를 넣지 않으면 지금처럼 오픈스트리트맵이 계속 표시됩니다 (에러 없이 안전하게 동작).
-const KAKAO_APP_KEY = '';
+const KAKAO_APP_KEY = '1d607701565a2a14904e4205b0e94f8a';
 
 if (KAKAO_APP_KEY) {
   const kakaoScript = document.createElement('script');
